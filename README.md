@@ -93,3 +93,4 @@ just don't forger to change the TARGET variable in the Makefile
 ## Resources:
 * [Programming the ATtiny85 From Raspberry Pi](https://www.instructables.com/Programming-the-ATtiny85-from-Raspberry-Pi/)
 * [Bare Metal Programming: ATtiny85](https://medium.com/@bradford_hamilton/bare-metal-programming-attiny85-22be36f4e9ca)
+* [Atmel ATtiny25, ATtiny45, ATtiny85 Datasheet](https://ww1.microchip.com/downloads/en/devicedoc/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf)
