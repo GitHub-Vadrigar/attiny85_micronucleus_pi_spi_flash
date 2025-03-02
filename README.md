@@ -1,4 +1,4 @@
-# Digispark (ATtiny85) Flashing with rpi GPIO
+# Digispark (ATtiny85) Micronucleus Bootloader Flashing with rpi GPIO
 
 ## Connect Raspberry Pi to Digispark:
 ### Digispark pinout
