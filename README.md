@@ -42,7 +42,8 @@ style="width: 50%"><br>
 ## Flashing Digispark with micronucleus bootloader
 `cd ~`\
 `git clone https://github.com/GitHub-Vadrigar/attiny85_micronucleus_pi_spi_flash`\
-`cd attiny85_micronucleus_pi_spi_flash`<br>
+`cd attiny85_micronucleus_pi_spi_flash`\
+`wget https://raw.githubusercontent.com/micronucleus/micronucleus/master/firmware/releases/t85_aggressive.hex`<br>
 #### To flash, simply use this line:
 `make install`
 #### The output should look like this:
