@@ -1,15 +1,15 @@
-# Digispark (ATtiny85) Flashing with rpi 4 GPIO
+# Digispark (ATtiny85) Flashing with rpi GPIO
 
-## Connect Raspberry Pi 4 to Digispark:
+## Connect Raspberry Pi to Digispark:
 ### Digispark pinout
 <img src="https://europe1.discourse-cdn.com/arduino/optimized/4X/7/9/2/792251f6b79970904de17bc51383f200771bc306_2_1000x758.png" 
 style="width: 50%">
 
-### Raspberry Pi 4 GPIO pinout
+### Raspberry Pi GPIO pinout
 <img src="https://www.raspberrypi.com/documentation/computers/images/GPIO-Pinout-Diagram-2.png" 
 style="width: 50%"><br>
 
-### rpi 4 GPIO to Digispark connection 
+### rpi GPIO to Digispark connection 
 
 <p>
     pin 4 (5V)&emsp;> &nbsp; 5V <br>
@@ -21,7 +21,7 @@ style="width: 50%"><br>
 </p>
 
 
-## Enable SPI on Raspberry Pi 4
+## Enable SPI on Raspberry Pi
 * `sudo raspi-config`
 * Select: Interfacing Options > SPI <br>
 (You don't need to reboot your Raspberry Pi)
@@ -39,20 +39,17 @@ style="width: 50%"><br>
 `cd WiringPi`\
 `./build` <br>
 
-## Flashing Digispark with LED blink program
+## Flashing Digispark with micronucleus bootloader
 `cd ~`\
-`git clone https://github.com/edvirs/attiny85_blink`\
-`cd attiny85_blink`<br>
+`git clone https://github.com/GitHub-Vadrigar/attiny85_micronucleus_pi_spi_flash`\
+`cd attiny85_micronucleus_pi_spi_flash`<br>
 #### To flash, simply use this line:
 `make install`
 #### The output should look like this:
 ```
-/usr/bin/avr-gcc -g -Os -Wall -mcall-prologues -mmcu=attiny85 blink.c -o blink
-/usr/bin/avr-objcopy -R .eeprom -O ihex blink blink.hex
-rm -f blink
 sudo gpio -g mode 22 out
 sudo gpio -g write 22 0
-sudo /usr/local/bin/avrdude -p t85 -P /dev/spidev0.0 -c linuxspi -b 10000 -U flash:w:blink.hex
+sudo /usr/local/bin/avrdude -p t85 -P /dev/spidev0.0 -c linuxspi -b 10000 -U flash:w:t85_aggressive.hex
 
 avrdude: AVR device initialized and ready to accept instructions
 
@@ -62,32 +59,31 @@ avrdude: Device signature = 0x1e930b
 avrdude: NOTE: "flash" memory has been specified, an erase cycle will be performed
          To disable this feature, specify the -D option.
 avrdude: erasing chip
-avrdude: reading input file "blink.hex"
-avrdude: input file blink.hex auto detected as Intel Hex
-avrdude: writing flash (144 bytes):
+avrdude: reading input file "t85_aggressive.hex"
+avrdude: input file t85_aggressive.hex auto detected as Intel Hex
+avrdude: writing flash (8146 bytes):
 
-Writing | ################################################## | 100% 0.56s
+Writing | ################################################## | 100% 5.63s
 
-avrdude: 144 bytes of flash written
-avrdude: verifying flash memory against blink.hex:
-avrdude: load data flash data from input file blink.hex:
-avrdude: input file blink.hex auto detected as Intel Hex
-avrdude: input file blink.hex contains 144 bytes
+avrdude: 8146 bytes of flash written
+avrdude: verifying flash memory against t85_aggressive.hex:
+avrdude: load data flash data from input file t85_aggressive.hex:
+avrdude: input file t85_aggressive.hex auto detected as Intel Hex
+avrdude: input file t85_aggressive.hex contains 8146 bytes
 avrdude: reading on-chip flash data:
 
-Reading | ################################################## | 100% 0.53s
+Reading | ################################################## | 100% 5.40s
 
 avrdude: verifying ...
-avrdude: 144 bytes of flash verified
+avrdude: 8146 bytes of flash verified
 
 avrdude: safemode: Fuses OK (E:FE, H:DF, L:F1)
 
 avrdude done.  Thank you.
 
 sudo gpio -g write 22 1
-
 ```
-#### And the LED should blink every 250ms
+#### And the Digispark should be able to be used with Arduino IDE again.
 Obviously, you can write your own C code for ATtiny85 and flash it,\
 just don't forger to change the TARGET variable in the Makefile
 ## Resources:
